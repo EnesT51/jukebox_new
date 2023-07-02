@@ -1,4 +1,3 @@
-@extends('layouts.master')
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Songs - Create</title>
 </head>
-@section('content')
 <body>
     <h1>Add a Song</h1>
     <form method="POST" action="{{route('song.store')}}">
@@ -37,9 +35,12 @@
             <p style="color:red; display:inline;">{{$message}}</p>
         @enderror()
         <br>
-
+        <select name="genre">
+            @foreach($genres as $g)
+                <option value="{{$g->name}}">{{$g->name}}</option>
+            @endforeach()
+        </select>
         <input type="submit" value="Send me!">
     </form>
 </body>
-@endsection()
 </html>
