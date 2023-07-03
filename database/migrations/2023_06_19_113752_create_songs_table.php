@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('author');
             $table->dateTime('releasedate');
             $table->integer('duration');
+            $table->string('genre');
             $table->timestamps();
         });
     }

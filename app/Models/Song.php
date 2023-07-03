@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class song extends Model
 {
-    protected $fillable = ['name','author','releasedate','duration','genre_id'];
+    protected $fillable = ['name','author','releasedate','duration','genre','genre_id'];
     use HasFactory;
 
     public function playlists(){
@@ -16,7 +16,7 @@ class song extends Model
     }
     public function genre(){
 
-        return $this->hasMany(Song::class);
+        return $this->belongsToMany(Genre::class);
         
     }
 }

@@ -1,4 +1,3 @@
-@extends('layouts.master')
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Playlist - Create</title>
 </head>
-@section('content')
 <body>
     <h1>Add a Playlist</h1>
     <form method="POST" action="{{route('playlist.store')}}">
@@ -21,5 +19,4 @@
         @enderror()
     </form>
 </body>
-@endsection()
 </html>

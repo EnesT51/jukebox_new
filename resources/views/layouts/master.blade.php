@@ -10,10 +10,15 @@
             <a href="{{route('genre.index')}}">Genres</a>
             <a href="{{route('song.index')}}">Songs</a>
             <a href="{{route('playlist.index')}}">Playlist</a>
+            <a href="{{route('login')}}">Login</a>
+            <a href="{{route('register')}}">Register</a>
         </nav>
+        
         <main>
             @yield('content')
         </main>
-        
+
 </body>
 </html>
+
+

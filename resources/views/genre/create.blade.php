@@ -1,4 +1,3 @@
-@extends('layouts.master')
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,7 +9,6 @@
 </head>
 
 <body>
-    @section('content')
     <h1>Add a Song</h1>
     <form method="POST" action="{{route('genre.store')}}">
         @csrf
@@ -25,7 +23,6 @@
     
     
 </body>
-@endsection()
 </html>
 
 
