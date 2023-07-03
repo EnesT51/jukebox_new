@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class SongController extends Controller
@@ -21,7 +22,8 @@ class SongController extends Controller
      */
     public function create()
     {
-        return view('song.create');
+        $genres = Genre::all();
+        return view('song.create')->with('genres', $genres);
     }
 
     /**
@@ -34,7 +36,7 @@ class SongController extends Controller
             'author' => ['required'],
             'releasedate' => ['date', 'required'],
             'duration' => ['required', 'integer'],
-            'genre_id' => ['required']
+            'genre' => ['required', 'string']
         ]);
 
         Song::create([
@@ -42,6 +44,7 @@ class SongController extends Controller
             'author' => $request['author'],
             'releasedate' => $request['releasedate'],
             'duration' => $request['duration'],
+            'genre' => $request['genre']
         ]);
         return redirect(route('song.index'));
     }
@@ -49,9 +52,10 @@ class SongController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Song $song)
+    public function show($id)
     {
-        //
+        $song = Song::find($id);
+        return view('song.detail', ['detail' => $song]);
     }
 
     /**
