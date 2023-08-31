@@ -37,7 +37,7 @@
         <br>
         <select name="genre">
             @foreach($genres as $g)
-                <option value="{{$g->name}}">{{$g->name}}</option>
+                <option value="{{$g->name}}">Genre: {{$g->name}}</option>
             @endforeach()
         </select>
         <input type="submit" value="Send me!">

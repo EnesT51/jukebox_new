@@ -13,7 +13,7 @@
     <h1>Dit is een totaaloverzicht van alle Playlists</h1>
     <ul>
     @foreach($playlist as $playlists)
-        <li>{{$playlists->name}} <a href="{{route('playlist.destroy', ['playlist' => $playlists->id])}}">X</a></li>
+        <li>{{$playlists->name}} <a href="{{route('playlist.show', ['id' => $playlists->id])}}">Show playlist</a> <a href="{{route('playlist.destroy', ['playlist' => $playlists->id])}}">Delete</a></li>
     @endforeach
     </ul>
 

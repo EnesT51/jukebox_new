@@ -13,5 +13,7 @@
         <p>Duration: {{$detail->duration}}</p>
         <p>Genre: {{$detail->genre}}</p>
     </ul>
+
+    <div><a href="{{route('song.index')}}">Go Back</a></div>
 </body>
 </html>

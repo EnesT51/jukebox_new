@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
         Schema::create('playlist_song', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('playlist_id');
             $table->unsignedInteger('song_id');
+            $table->unique(['playlist_id', 'song_id']);
             $table->timestamps();
         });
     }

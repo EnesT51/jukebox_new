@@ -14,7 +14,7 @@
     <h1>Dit is een totaaloverzicht van alle Genres</h1>
     <ul>
         @foreach($genres as $genre)
-        <li>{{$genre->name}} <a href="{{route('genre.destroy', ['genre' => $genre->id])}}">X</a></li>
+        <li>{{$genre->name}} <a href="{{route('genre.destroy', ['genre' => $genre->id])}}">Delete</a></li>
         @endforeach
     </ul>
 
