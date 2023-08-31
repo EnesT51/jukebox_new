@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use App\Models\Playlist;
 use App\Models\Song;
 use App\Models\Genre;
 use Illuminate\Http\Request;
@@ -14,16 +16,48 @@ class SongController extends Controller
     public function index()
     {
         $songs = Song::all();
-        return view('song.index', ['songs' => $songs]);
+        $playlists = Playlist::all();
+        return view('song.index', ['songs' => $songs, 'playlists' => $playlists]);
     }
+    public function addSongsToPlaylist(Request $request)
+    {
+        
+        $request->validate([
+            'playlist' => 'required|exists:playlists,id',
+            'song_id' => 'required|exists:songs,id',
+        ]);
+        $playlist = Playlist::find($request->input('playlist'));
+        $songId = $request->input('song_id');
+        if($playlist->songs->contains($songId)){
+            return redirect()->back();
+        }
+        $playlist->songs()->attach($songId);
 
+        return redirect(route('song.index'));
+    }
+    public function RemoveSongFromPlaylist(Request $request)
+    {
+        
+        $request->validate([
+            'playlist' => 'required|exists:playlists,id',
+            'song_id' => 'required|exists:songs,id',
+        ]);
+        // Haal de geselecteerde playlist en song op
+        $playlist = Playlist::find($request->input('playlist'));
+        $songId = $request->input('song_id');
+    
+        // Verwijder het nummer uit de afspeellijst
+        $playlist->songs()->detach($songId);
+        return redirect(route('playlist.index'));
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         $genres = Genre::all();
-        return view('song.create')->with('genres', $genres);
+        
+        return view('song.create')->with(['genres' => $genres]);
     }
 
     /**
@@ -52,12 +86,15 @@ class SongController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Song $song)
+    {
+        
+    }
+    public function SongDetail($id)
     {
         $song = Song::find($id);
         return view('song.detail', ['detail' => $song]);
     }
-
     /**
      * Show the form for editing the specified resource.
      */
