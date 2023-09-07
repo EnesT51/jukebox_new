@@ -54,3 +54,7 @@ Route::get('/playlist/show/{id}', [PlaylistController::class, 'show'])->name('pl
 
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

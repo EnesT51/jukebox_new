@@ -9,7 +9,7 @@
 
     <div>
         <h1>playlist name: {{$playlist->name}}</h1>
-        <h2>songs in playlist: {{$playlist->name}}</h2>
+        <p>songs in playlist: {{$playlist->name}}</p>
     </div>
     <form action="{{ route('remove-song-from-playlist') }}" method="post" id="removeSongForm">
     @csrf
@@ -28,6 +28,11 @@
             <li><strong>Song name: </strong>{{$song->name}} <strong>Author: </strong>{{$song->author}}</li>
         @endforeach()
     </div>
+    @if(isset($song->duration))
+    <div class="pe-10">
+        <p>Playlist duration:<strong> {{$song->duration / 60}}</strong>min</p>
+    </div>
+    @endif()
     <br>
     <div> <a href="{{route('playlist.index')}}">Go Back</a></div>
 </body>

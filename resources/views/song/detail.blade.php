@@ -8,7 +8,7 @@
 <body>
     <ul>
         <h1>Song: {{$detail->name}}</h1>
-        <p>Author:{{$detail->author}} </p>
+        <p>Author: {{$detail->author}} </p>
         <p>Releasedate: {{$detail->releasedate}}</p>
         <p>Duration: {{$detail->duration}}</p>
         <p>Genre: {{$detail->genre}}</p>

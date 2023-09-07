@@ -42,9 +42,10 @@ class PlaylistController extends Controller
     {
 
         $playlist = Playlist::with('songs')->find($id->id);
+        
         $songsInPlaylist = $playlist->songs;
-        //dd($songsInPlaylist);
-        return view('playlist/showplaylist', ['playlist' => $playlist, 'songs' => $songsInPlaylist]);
+        $song = $songsInPlaylist->find($id->id);
+        return view('playlist/showplaylist', ['playlist' => $playlist, 'songs' => $songsInPlaylist, 'song' => $song]);
     }
 
     /**

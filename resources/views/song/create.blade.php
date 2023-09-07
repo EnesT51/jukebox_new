@@ -42,5 +42,6 @@
         </select>
         <input type="submit" value="Send me!">
     </form>
+    <a href="{{route('song.index')}}">go back</a>
 </body>
 </html>

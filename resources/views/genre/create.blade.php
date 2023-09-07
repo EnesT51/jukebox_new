@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Add a Song</h1>
+    <h1>Add a Genre</h1>
     <form method="POST" action="{{route('genre.store')}}">
         @csrf
         <label>Vul een naam voor het genre in</label>
@@ -19,7 +19,7 @@
             <p style="color:red; display:inline;">{{$message}}</p>
         @enderror()
     </form>
-
+    <div><a href="{{route('genre.index')}}">Go Back</a></div>
     
     
 </body>
