@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Playlist - Create</title>
 </head>
+@section('content')
 <body>
     <h1>Add a Playlist</h1>
     <form method="POST" action="{{route('playlist.store')}}">
@@ -18,5 +20,7 @@
             <p style="color:red; display:inline;">{{$message}}</p>
         @enderror()
     </form>
+    <a href="{{route('playlist.index')}}">Go back</a>
 </body>
+@endsection()
 </html>

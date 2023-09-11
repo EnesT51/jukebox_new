@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Songs - Create</title>
 </head>
+
 <body>
+    @section('content')
     <h1>Add a Song</h1>
     <form method="POST" action="{{route('song.store')}}">
         @csrf
@@ -43,5 +46,7 @@
         <input type="submit" value="Send me!">
     </form>
     <a href="{{route('song.index')}}">go back</a>
+    @endsection()
 </body>
+
 </html>

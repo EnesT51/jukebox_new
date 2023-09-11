@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,7 +18,8 @@
         <div>
             <li>
                 {{$playlists->name}} 
-                <a href="{{route('playlist.show', ['id' => $playlists->id])}}">Show playlist</a> 
+                <a href="{{route('playlist.show', ['id' => $playlists->id])}}">Show playlist</a>
+                <a href="{{route('playlist.edit', ['playlist' => $playlists->id])}}">Edit</a>
                 <a href="{{route('playlist.destroy', ['playlist' => $playlists->id])}}">Delete</a>
             </li>
         </div>

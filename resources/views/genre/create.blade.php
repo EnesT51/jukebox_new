@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Genres - Create</title>
 </head>
-
+@section('content')
 <body>
     <h1>Add a Genre</h1>
     <form method="POST" action="{{route('genre.store')}}">
@@ -20,9 +22,8 @@
         @enderror()
     </form>
     <div><a href="{{route('genre.index')}}">Go Back</a></div>
-    
-    
 </body>
+@endsection()
 </html>
 
 

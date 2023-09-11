@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+@section('content')
 <body>
 
     <div>
         <h1>playlist name: {{$playlist->name}}</h1>
-        <p>songs in playlist: {{$playlist->name}}</p>
     </div>
     <form action="{{ route('remove-song-from-playlist') }}" method="post" id="removeSongForm">
     @csrf
@@ -28,12 +29,13 @@
             <li><strong>Song name: </strong>{{$song->name}} <strong>Author: </strong>{{$song->author}}</li>
         @endforeach()
     </div>
-    @if(isset($song->duration))
+    @if(isset($song))
     <div class="pe-10">
-        <p>Playlist duration:<strong> {{$song->duration / 60}}</strong>min</p>
+        <p>Playlist duration:<strong> {{number_format($song->duration / 60 ,2)}}</strong>min</p>
     </div>
     @endif()
     <br>
     <div> <a href="{{route('playlist.index')}}">Go Back</a></div>
 </body>
+@endsection()
 </html>

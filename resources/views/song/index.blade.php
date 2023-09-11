@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,6 +38,7 @@
         <li>{{$song->name}} - {{$song->author}} | Released in {{$song->releasedate}} | is found in playlist: @foreach($song->playlists as $playlist) {{$playlist->name}}; @endforeach 
             <a href="/song/detail/{{ $song->id }}">Song Info</a> 
             <a href="{{route('song.destroy', ['song' => $song->id])}}">Delete</a>
+            <a href="{{route('song.edit', ['song' => $song->id])}}">Update</a>
         </li>
     @endforeach
     </ul>

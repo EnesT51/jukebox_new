@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song detail</title>
 </head>
+@section('content')
 <body>
     <ul>
         <h1>Song: {{$detail->name}}</h1>
@@ -16,4 +18,5 @@
 
     <div><a href="{{route('song.index')}}">Go Back</a></div>
 </body>
+@endsection()
 </html>
