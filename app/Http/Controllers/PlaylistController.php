@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Song;
 use App\Models\Playlist;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class PlaylistController extends Controller
 {
     /**
@@ -13,8 +14,13 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        $playlist = Playlist::all();
-        return view('playlist.index', ['playlist' => $playlist]);
+
+        $user = Auth::User();
+        if($user){
+
+            $userpl = $user->playlists;
+        }
+        return view('playlist.index', ['playlist' => $userpl]);
     }
     public function create()
     {
@@ -25,11 +31,13 @@ class PlaylistController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         $request->validate([
             'name' =>['Required']
         ]);
 
-        Playlist::create([
+        $playlist = $user->playlists()->create([
             'name' => $request['name']
         ]);
         return redirect(route('playlist.index'));
@@ -51,17 +59,27 @@ class PlaylistController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Playlist $playlist)
+    public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $pl = $user->playlists->find($id);
+        return view('playlist.update', ['playlist' => $pl]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Playlist $playlist)
+    public function update(Request $request, $id)
     {
-        //
+
+        $user = Auth::user();
+        $validate = $request->validate([
+            'name' => ['required']
+        ]);
+
+        $user->playlists->find($id)->update($validate);
+
+        return redirect(route('playlist.index'));
     }
 
     /**
