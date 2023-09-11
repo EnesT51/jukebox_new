@@ -100,7 +100,10 @@ class SongController extends Controller
      */
     public function edit(Song $song)
     {
-        //
+        $song = $song::find($song->id);
+        $genre = Genre::all();
+
+        return view('song.update', ['song' => $song, 'genres' => $genre]);
     }
 
     /**
@@ -108,7 +111,15 @@ class SongController extends Controller
      */
     public function update(Request $request, Song $song)
     {
-        //
+        $validate = $request->validate([
+            'name' => ['required'],
+            'author' => ['required'],
+            'releasedate' => ['date', 'required'],
+            'duration' => ['required', 'integer'],
+            'genre' => ['required', 'string']
+        ]);
+        $song->update($validate);
+        return redirect(route('song.index',['song' => $song]));
     }
 
     /**
